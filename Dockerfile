@@ -1,13 +1,13 @@
-FROM java:alpine
+FROM alpine:edge
 
+# install java
 RUN \
-  echo 'http://dl-3.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
-  apk upgrade --update \
-  apk add --no-cache mongodb
+  apk add --no-cache openjdk8
 
-VOLUME /data/db
-EXPOSE 27017 28017
+# install mongodb
+RUN \
+  echo '@testing http://dl-4.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
+  apk add --no-cache mongodb@testing && \
+  rm /usr/bin/mongosniff /usr/bin/mongoperf
 
-COPY run.sh /root
-ENTRYPOINT [ "/root/run.sh" ]
 CMD [ "mongod" ]

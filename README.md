@@ -1,6 +1,9 @@
 # docker-alpine-java-mongo
 
-This repository hosts a Dockerfile for a container that has [MongoDB](https://www.mongodb.org) and [OpenJDK 8](http://openjdk.java.net/) installed, based on the [java:alpine](https://hub.docker.com/r/_/java/) image.
+This repository hosts a Dockerfile for building a container that has [OpenJDK 8](http://openjdk.java.net/) and [MongoDB](https://www.mongodb.org) installed, based on the [alpine:edge](https://hub.docker.com/r/_/java/) image.
+
+**Note**: This Dockerfile's main purpose is to use an image in Bitbucket's piplines that enables you to run integrattion tests
+that require a running mongodb instance.
 
 ## Install
 
@@ -12,14 +15,14 @@ For re-building this image from the dockerfile:
 
 	$ docker build -t mherwig/alpine-java-mongo .
 
-## Usage
+## Use it in Bitbucket's piplines
 
-Running `mongod`:
+Example `bitbucket-pipelines.yml`:
 
-	$ docker run -d --name mongo -p 27017:27017 mherwig/alpine-java-mongo
+	image: mherwig/alpine-java-mongo
 
-You can also specify the location on the host system where the database shall be stored (MacOSX not supported due to Docker limitations):
-
-    $ docker run -d --name mongo -p 27017:27017 \
-    -v ~/data/db:/data/db \
-    mherwig/alpine-java-mongo
+	pipelines:
+	  default:
+	    - step:
+	        script:
+	          - ./gradlew build
