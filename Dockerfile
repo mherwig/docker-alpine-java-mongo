@@ -1,5 +1,9 @@
 FROM alpine:edge
 
+# install bash
+RUN \
+  apk add --no-cache bash
+
 # install java
 RUN \
   apk add --no-cache openjdk8
