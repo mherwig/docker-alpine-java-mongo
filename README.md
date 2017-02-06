@@ -25,4 +25,5 @@ Example `bitbucket-pipelines.yml`:
 	  default:
 	    - step:
 	        script:
+	          - mongod --fork --logpath /var/log/mongod.log
 	          - ./gradlew build
