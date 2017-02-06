@@ -14,4 +14,5 @@ RUN \
   apk add --no-cache mongodb@testing && \
   rm /usr/bin/mongosniff /usr/bin/mongoperf
 
+VOLUME ["/data/db"]
 CMD [ "mongod" ]
