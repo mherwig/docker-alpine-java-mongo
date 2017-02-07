@@ -2,8 +2,7 @@
 
 This repository hosts a Dockerfile for building a container that has [OpenJDK 8](http://openjdk.java.net/) and [MongoDB](https://www.mongodb.org) installed, based on the [alpine:edge](https://hub.docker.com/r/_/java/) image.
 
-**Note**: This Dockerfile's main purpose is to use an image in Bitbucket's piplines that enables you to run integrattion tests
-that require a running mongodb instance.
+**Note**: This Dockerfile's main purpose is to use the built image in Bitbucket's piplines which enables you to run integration tests that require a running mongodb instance.
 
 ## Install
 
